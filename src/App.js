@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import CarsComponents from "./Components/carsComponents/CarsComponents";
+import {cars} from "./dataBase/carDB";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <div>
+                {
+                    cars.map((value, index) =>{
+                            let stl=index%2 ? "aquamarine" : "yellow";
+                            return(<CarsComponents item={value} color={stl} key={index}/>)
+                        }
+                    )
+                }
+            </div>
+        );
+    }
 }
 
 export default App;
