@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import AllUsers from "./components/allUsers/AllUsers";
+import AllComments from "./components/allComments/AllComments";
+import AllPosts from "./components/allPosts/AllPosts";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <ul className={"list"}>
+                        <li><Link to={"/users"}> Users list </Link></li>
+                        <li><Link to={"/posts"}> Posts list </Link></li>
+                        <li><Link to={"/comments"}> Comments list </Link></li>
+                    </ul>
+                    <div>
+                        <Switch>
+                            <Route path={"/users"} render={() => {
+                                return <AllUsers/>
+                            }}/>
+                            <Route path={"/comments"} render={() => {
+                                return <AllComments/>
+                            }}/>
+                            <Route path={"/posts"} render={() => {
+                                return <AllPosts/>
+                            }}/>
+                        </Switch>
+                    </div>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
